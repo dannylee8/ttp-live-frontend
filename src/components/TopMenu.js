@@ -3,6 +3,7 @@ import axios from 'axios'
 import { Link } from 'react-router-dom'
 
 function TopMenu (props) {
+  // our logout button handler
   const handleClick = () => {
     axios.delete('https://ttp-live-backend.herokuapp.com/logout', { withCredentials: true })
       .then(response => {
@@ -12,6 +13,7 @@ function TopMenu (props) {
       .catch(error => console.log(error))
   }
 
+  // handle setting of our page's current mode (portfolio or transactions)
   const setModeClick = (event) => {
     props.setMode(event.target.innerHTML.toLowerCase())
   }

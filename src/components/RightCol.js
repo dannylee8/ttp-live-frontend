@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 
+// facilitate comma-separated numbers, eg: 8,888
 var commaNumber = require('comma-number')
 
 const HEADERS = {
@@ -9,7 +10,6 @@ const HEADERS = {
 }
 
 class RightCol extends Component {
-
   constructor (props) {
     super(props);
     this.state = { 
@@ -26,6 +26,7 @@ class RightCol extends Component {
   };
 
   placeOrder(userID, newBalance, ticker, quantity, latestPrice) {
+    // update our current user's cash balance
     fetch(`https://ttp-live-backend.herokuapp.com/users/${userID}`, {
       method: "PATCH",
       headers: HEADERS,
@@ -37,6 +38,7 @@ class RightCol extends Component {
     .then(json => {
       this.props.updateUser(json.user)
     })
+    // create our new stock instance and assign it current user
     fetch(`https://ttp-live-backend.herokuapp.com/stocks`, {
       method: "POST",
       headers: HEADERS,
@@ -49,6 +51,7 @@ class RightCol extends Component {
     })
     .then(resp => resp.json())
     .then(json => {
+      // update our stocks array in App.js state
       this.props.updateStocks(json.stock, latestPrice)
     })
   }
@@ -73,6 +76,8 @@ class RightCol extends Component {
       if (response.data.symbol) {
         let orderCost = (response.data.latestPrice * quantity).toFixed(2)
         let newBalance = this.props.user.cash - orderCost
+
+        // make sure User has enough cash to cover purchase
         if (newBalance > 0 ) {
           this.setState({
             ticker: '',

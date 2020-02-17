@@ -5,6 +5,7 @@ import RightCol from './RightCol'
 
 class Home extends Component {
 
+  // if we're not logged in, back to login for this visitor!
   componentDidUpdate() {
     return this.props.loggedInStatus ? null : this.redirect()
   }

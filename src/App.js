@@ -1,46 +1,51 @@
 import React, { Component } from 'react';
-import axios from 'axios'
 import {BrowserRouter, Switch, Route} from 'react-router-dom'
-import Home from './components/Home'
-import Login from './components/registrations/Login'
+import axios from 'axios'
 import Signup from './components/registrations/Signup'
+import Login from './components/registrations/Login'
+import Home from './components/Home'
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = { 
-      loading: true, 
       isLoggedIn: false,
-      user: {},
+      loading: true, 
       mode: '',
-      stocks: [],
       portfolioCost: 0,
-      portfolioCurrentValue: 0
+      portfolioCurrentValue: 0,
+      stocks: [],
+      user: {}
     };
   }
 
   componentDidMount() {
+    // check if user is already logged in
     this.loginStatus()
   }
 
+  // portfolio or transactions mode?
   setMode = (modeText) => {
     this.setState({
       mode: modeText
     })
   }
 
+  // update our state:user after order placed in RightCol.js
   updateUser = (user) => {
     this.setState({
       user: user
     })
   }
 
+  // update our state:stocks after order placed in RightCol.js
   updateStocks = (stock, latestPrice) => {
     this.setState({
       stocks: [...this.state.stocks, { ...stock, current_price: latestPrice } ]
     })
   }
 
+  // check if we're already logged into server
   loginStatus = () => {
     axios.get('https://ttp-live-backend.herokuapp.com/logged_in', {withCredentials: true})
     .then(response => {
@@ -55,6 +60,7 @@ class App extends Component {
     })
   }
 
+  // set our state with user info and their stocks array
   handleLogin = (data) => {
     this.setState((prevState, props) => ({
       isLoggedIn: true,
@@ -66,6 +72,7 @@ class App extends Component {
     }
   }
 
+  // get current user's stocks array
   getUserStocks = (id) => {
     fetch(`https://ttp-live-backend.herokuapp.com/users/${id}`)
     .then (resp => resp.json())
@@ -78,6 +85,7 @@ class App extends Component {
       
       let symbolList = json.stocks.map(s => s.symbol).join(',')
 
+      // call IEX API to get open/high/low/close data to use to conditionally render portfolio list's colors
       axios.get(`https://sandbox.iexapis.com/stable/stock/market/batch?symbols=${symbolList}&types=ohlc&token=Tpk_f60d00f3b3774527b14ddc2510d54b18`)
       .then(response => {
         // response contains OHLC data for each stock in our users portfolio

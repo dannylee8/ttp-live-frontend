@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import axios from 'axios'
 import {Link} from 'react-router-dom'
+import axios from 'axios'
 
 class Signup extends Component {
   constructor(props) {
@@ -15,6 +15,7 @@ class Signup extends Component {
   }
 
   componentDidUpdate() {
+    // if we're already logged in, let's go home...
     return this.props.loggedInStatus ? this.redirect() : null
   }
   
@@ -27,6 +28,7 @@ class Signup extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault()
+    // deconstruct state into variables for clarity/simplification
     const {username, email, password, password_confirmation} = this.state
     let user = {
       username: username,
@@ -35,8 +37,11 @@ class Signup extends Component {
       password_confirmation: password_confirmation,
       cash: 5000.00
     }
+    // create our new user in the backend
     axios.post('https://ttp-live-backend.herokuapp.com/users', {user}, {withCredentials: true})
     .then(response => {
+      // if all is well, send our user home
+      // otherwise, show errors and clear form
       if (response.data.status === 'created') {
         this.props.handleLogin(response.data)
         this.redirect()
