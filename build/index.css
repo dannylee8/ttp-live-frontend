@@ -1,0 +1,139 @@
+body {
+  text-align:center;
+  width:100%;
+  margin:0 auto;
+  padding:0px;
+  background-color:#778899;
+  font-family: 'Roboto', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+#wrapper {
+  margin:0 auto;
+  padding:0px;
+  text-align:center;
+  width:995px;
+}
+
+#login_div {
+  background-color:white;
+  padding:20px;
+  width: 40vw;
+  border-radius: 5px;
+  border: 1px dotted gainsboro;
+}
+
+#login_div button {
+  margin-top:20px;
+  height:40px;
+  width:100%;
+}
+
+#login_div #register {
+  margin-top:20px;
+  float:left;
+}
+
+#login_div #forgot {
+  margin-top:20px;
+  float:right;
+}
+
+.center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.error-message {
+  color: #FF5733;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  text-align: center;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: .9em;
+}
+
+.error-box {
+  height: 100px;
+  padding: 10px;
+}
+
+.top-menu {
+  text-align: right;
+  padding: 20px 10px;
+}
+
+.row {
+  display: flex;
+}
+
+.column {
+  flex: 50%;
+  height: 80vh;
+}
+
+.left {
+  background-color: gainsboro;
+  border-radius: 5px;
+}
+
+.right {
+  background-color: silver;
+  border-left-style: double;
+  border-left:  3px solid darkslategray;
+  border-radius: 5px;
+}
+
+.logo {
+  float: left;
+  font-size: 1.5em;
+  font-weight: bold
+}
+
+.cash-balance {
+  font-family: 'IBM Plex Mono', monospace;
+  padding-top: 10vh;
+  font-size: 1.2em;
+  color: green;
+}
+
+#stocks {
+  font-family: 'IBM Plex Mono', monospace;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#stocks td, #stocks th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#stocks tr:nth-child(even){background-color: #f2f2f2;}
+
+#stocks tr:hover {background-color: #bcd2ee;}
+
+#stocks th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
+}
+
+.stock-form input {
+  width: 50%;
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+}
