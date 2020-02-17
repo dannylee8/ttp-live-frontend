@@ -137,3 +137,15 @@ code {
   margin-right: auto;
   margin-left: auto;
 }
+
+.red {
+  color: red;
+}
+
+.gray {
+  color: gray;
+}
+
+.green {
+  color: green;
+}

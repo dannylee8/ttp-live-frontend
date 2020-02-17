@@ -42,7 +42,7 @@ class App extends Component {
   }
 
   loginStatus = () => {
-    axios.get('http://localhost:3001/logged_in', {withCredentials: true})
+    axios.get('https://ttp-live-backend.herokuapp.com/logged_in', {withCredentials: true})
     .then(response => {
       if (response.data.logged_in) {
         this.handleLogin(response.data)
@@ -67,7 +67,7 @@ class App extends Component {
   }
 
   getUserStocks = (id) => {
-    fetch(`http://localhost:3001/users/${id}`)
+    fetch(`https://ttp-live-backend.herokuapp.com/users/${id}`)
     .then (resp => resp.json())
     .then (json => {
       this.setState((prevState, props) => ({

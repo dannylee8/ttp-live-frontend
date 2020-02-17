@@ -26,7 +26,7 @@ class RightCol extends Component {
   };
 
   placeOrder(userID, newBalance, ticker, quantity, latestPrice) {
-    fetch(`http://localhost:3001/users/${userID}`, {
+    fetch(`https://ttp-live-backend.herokuapp.com/users/${userID}`, {
       method: "PATCH",
       headers: HEADERS,
       body: JSON.stringify({
@@ -37,7 +37,7 @@ class RightCol extends Component {
     .then(json => {
       this.props.updateUser(json.user)
     })
-    fetch(`http://localhost:3001/stocks`, {
+    fetch(`https://ttp-live-backend.herokuapp.com/stocks`, {
       method: "POST",
       headers: HEADERS,
       body: JSON.stringify({
