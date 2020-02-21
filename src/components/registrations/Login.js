@@ -13,6 +13,7 @@ class Login extends Component {
   }
 
   componentDidUpdate() {
+    console.log(this.props.loggedInStatus)
     return this.props.loggedInStatus ? this.redirect() : null
   }
 
