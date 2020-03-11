@@ -20,6 +20,7 @@ class Home extends Component {
         <TopMenu {...this.props} setMode={this.props.setMode} loggedInStatus={this.props.loggedInStatus} />
         {this.props.loggedInStatus ? 
           <div className='row'>
+            {this.props.loading ? <div className='loader'></div>: null }
             <LeftCol {...this.props} userobj={this.props.userobj} modeStatus={this.props.modeStatus} />
             <RightCol {...this.props} updateUser={this.props.updateUser} userobj={this.props.userobj} modeStatus={this.props.modeStatus} />
           </div>

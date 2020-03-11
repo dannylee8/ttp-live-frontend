@@ -26,18 +26,6 @@ class RightCol extends Component {
   };
 
   placeOrder(userID, newBalance, ticker, quantity, latestPrice) {
-    // update our current user's cash balance
-    fetch(`https://ttp-live-backend.herokuapp.com/users/${userID}`, {
-      method: "PATCH",
-      headers: HEADERS,
-      body: JSON.stringify({
-        cash: newBalance
-      })
-    })
-    .then(resp => resp.json())
-    .then(json => {
-      this.props.updateUser(json.user)
-    })
     // create our new stock instance and assign it current user
     fetch(`https://ttp-live-backend.herokuapp.com/stocks`, {
       method: "POST",
@@ -51,6 +39,18 @@ class RightCol extends Component {
     })
     .then(resp => resp.json())
     .then(json => {
+      // update our current user's cash balance
+      fetch(`https://ttp-live-backend.herokuapp.com/users/${userID}`, {
+        method: "PATCH",
+        headers: HEADERS,
+        body: JSON.stringify({
+          cash: newBalance
+        })
+      })
+      .then(resp => resp.json())
+      .then(json => {
+        this.props.updateUser(json.user)
+      })
       // update our stocks array in App.js state
       this.props.updateStocks(json.stock, latestPrice)
     })
@@ -79,11 +79,12 @@ class RightCol extends Component {
 
         // make sure User has enough cash to cover purchase
         if (newBalance > 0 ) {
+          // Had these two lines reversed, so state was getting reset before the order was sent out
+          this.placeOrder(this.props.user.id, newBalance, ticker, quantity, response.data.latestPrice)
           this.setState({
             ticker: '',
             quantity: ''
           })
-          this.placeOrder(this.props.user.id, newBalance, ticker, quantity, response.data.latestPrice)
         } else {
           alert("Insufficient funds")
           return
@@ -98,6 +99,11 @@ class RightCol extends Component {
     })
     .catch(error => {
       console.log('api errors:', error)
+      // clear state in the case we have an invalid ticker symbol
+      this.setState({
+        ticker: '',
+        quantity: ''
+      })
       alert('Please enter a valid stock ticker symbol')
     })
   };
@@ -107,7 +113,9 @@ class RightCol extends Component {
     const {ticker, quantity} = this.state
     return (
       // Portfolio mode, show right column bg color and dividing line
-      <div className={`column ${(this.props.modeStatus === 'portfolio') ? 'right' : ''}`}>
+      <div className={`column ${(this.props.modeStatus === 'portfolio' && this.props.loading) ? 'right fade-out' 
+        : this.props.modeStatus === 'portfolio' ? 'right' 
+        : ''}`}>
         {this.props.modeStatus === 'portfolio' ? 
         <>
           <div className="cash-balance">

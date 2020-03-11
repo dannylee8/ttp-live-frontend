@@ -1,21 +1,21 @@
 import React, { Component } from 'react';
-import {BrowserRouter, Switch, Route} from 'react-router-dom'
 import axios from 'axios'
-import Signup from './components/registrations/Signup'
-import Login from './components/registrations/Login'
+import {BrowserRouter, Switch, Route} from 'react-router-dom'
 import Home from './components/Home'
+import Login from './components/registrations/Login'
+import Signup from './components/registrations/Signup'
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = { 
-      isLoggedIn: false,
       loading: true, 
+      isLoggedIn: false,
+      user: {},
       mode: '',
-      portfolioCost: 0,
-      portfolioCurrentValue: 0,
       stocks: [],
-      user: {}
+      portfolioCost: 0,
+      portfolioCurrentValue: 0
     };
   }
 
@@ -65,7 +65,8 @@ class App extends Component {
     this.setState((prevState, props) => ({
       isLoggedIn: true,
       user: data.user, 
-      mode: 'portfolio'
+      mode: 'portfolio',
+      loading: true
     }))
     if (data.user) {
       this.getUserStocks(data.user.id)
@@ -102,7 +103,9 @@ class App extends Component {
             stocks: [...filteredState, { ...stockInState, openPrice: openPrice  } ]
           })
         }
-      })
+      this.setState((prevState, props) => ({
+        loading: false
+      }))
     })
   }
 
@@ -133,7 +136,7 @@ class App extends Component {
             <Route 
               path='/' 
               render={props => (
-              <Home {...props} {...this.state} updateUser={this.updateUser} updateStocks={this.updateStocks} handleLogout={this.handleLogout} userobj={this.state.user} setMode={this.setMode} modeStatus={this.state.mode} loggedInStatus={this.state.isLoggedIn}/>
+              <Home {...props} {...this.state} getUserStocks={this.getUserStocks} updateUser={this.updateUser} updateStocks={this.updateStocks} handleLogout={this.handleLogout} userobj={this.state.user} setMode={this.setMode} modeStatus={this.state.mode} loggedInStatus={this.state.isLoggedIn}/>
               )}
             />
           </Switch>
