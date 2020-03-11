@@ -52,7 +52,9 @@ class RightCol extends Component {
         this.props.updateUser(json.user)
       })
       // update our stocks array in App.js state
-      this.props.updateStocks(json.stock, latestPrice)
+      // this.props.updateStocks(json.stock, latestPrice)
+      // instead get the stocks from the server API
+      this.props.getUserStocks(userID)
     })
   }
 
