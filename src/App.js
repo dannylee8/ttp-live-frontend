@@ -116,7 +116,6 @@ class App extends Component {
       isLoggedIn: false,
       user: {}
     })
-    props.history.push("/");
   }
 
   render() {
