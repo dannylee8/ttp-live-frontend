@@ -112,15 +112,12 @@ class Login extends Component {
             {this.state.errors ? this.handleErrors() : null}
           </div>
           <div>
-            <h4>Login with any of these demo accounts:</h4>
-            <ul>
-              <li>username: danny@email.com, password: password</li>
-              <li>username: ml@email.com, password: password</li>
-              <li>username: rj@email.com, password: password</li>
-              <li>username: jr@email.com, password: password</li>
-            </ul>
+            <h4>Login with any of these demo emails:</h4>
+            <p>danny@email.com, ml@email.com, rj@email.com, jr@email.com</p>
+            <p>password: password</p>
             <p>
               <a href="https://github.com/dannylee8/ttp">Github repository</a>
+              <br />
               <a href="https://www.youtube.com/watch?v=d01i3acbZt4&feature=youtu.be">
                 Walkthru on YouTube
               </a>
