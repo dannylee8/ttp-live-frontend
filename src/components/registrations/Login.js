@@ -53,6 +53,7 @@ class Login extends Component {
   };
 
   redirect = () => {
+    console.log("push");
     this.props.history.push("/");
   };
 
@@ -116,9 +117,14 @@ class Login extends Component {
             <p>danny@email.com, ml@email.com, rj@email.com, jr@email.com</p>
             <p>password: password</p>
             <p>
-              <a href="https://github.com/dannylee8/ttp">Github repository</a>
+              <a target="_new" href="https://github.com/dannylee8/ttp">
+                Github repository
+              </a>
               <br />
-              <a href="https://www.youtube.com/watch?v=d01i3acbZt4&feature=youtu.be">
+              <a
+                target="_new"
+                href="https://www.youtube.com/watch?v=d01i3acbZt4&feature=youtu.be"
+              >
                 Walkthru on YouTube
               </a>
             </p>
