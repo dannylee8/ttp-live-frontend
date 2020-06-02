@@ -135,7 +135,6 @@ class Login extends Component {
             </p>
           </div>
         </div>
-      </p>
       </>
     );
   }
