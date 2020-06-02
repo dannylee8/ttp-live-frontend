@@ -14,9 +14,7 @@ class Login extends Component {
 
   componentDidMount() {
     // console.log(this.props.loggedInStatus)
-    console.log(this.props.loggedInStatus);
-    console.log(this.props.history);
-    return this.props.loggedInStatus ? this.redirect() : null;
+    return this.redirect();
   }
 
   handleChange = (event) => {

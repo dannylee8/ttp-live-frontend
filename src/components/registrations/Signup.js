@@ -16,7 +16,7 @@ class Signup extends Component {
 
   componentDidMount() {
     // if we're already logged in, let's go home...
-    return this.props.loggedInStatus ? this.redirect() : null;
+    return this.redirect();
   }
 
   handleChange = (event) => {
