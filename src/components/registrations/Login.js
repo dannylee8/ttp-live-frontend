@@ -131,8 +131,9 @@ class Login extends Component {
               </a>
             </p>
             <p>
-                Visit my <a href="https://www.panix.com/~dreamer/">homepage!</a>
+              Visit my <a href="https://www.panix.com/~dreamer/">homepage</a>!
             </p>
+          </div>
         </div>
       </p>
     );
