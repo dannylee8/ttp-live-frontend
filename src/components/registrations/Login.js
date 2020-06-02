@@ -12,7 +12,7 @@ class Login extends Component {
     };
   }
 
-  componentDidUpdate() {
+  componentDidMount() {
     // console.log(this.props.loggedInStatus)
     console.log(this.props.loggedInStatus);
     console.log(this.props.history);
@@ -130,9 +130,11 @@ class Login extends Component {
                 Walkthru on YouTube
               </a>
             </p>
-          </div>
+            <p>
+                Visit my <a href="https://www.panix.com/~dreamer/">homepage!</a>
+            </p>
         </div>
-      </>
+      </p>
     );
   }
 }
