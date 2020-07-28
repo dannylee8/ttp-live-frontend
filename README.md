@@ -1,4 +1,22 @@
+ 
+Demo available courtesy of Netlify: [https://ttp-live-frontend.netlify.com/](https://ttp-live-frontend.netlify.com/). 
 
+Please note, it may take a moment to startup.  The [Rails backend](https://github.com/dannylee8/ttp-live-backend) is hosted on Heroku and will take a moment to startup up after being idled.  
+
+A 404 (not found) error might appear.  If you wait a brief moment and refresh the page, it should show up. If you have difficulties please message me! Thank you for your patience. ☺️
+
+#### Sample Users
+email: danny@email.com /
+pw: password 
+
+email: ml@email.com /
+pw: password
+
+email: rj@email.com /
+pw: password
+
+email: jz@email.com /
+pw: password
 
 # Front and backend for TTP Stage 2 assessment
 [https://drive.google.com/file/d/1Z9kbDmSzfGIvShJDzXQvpX68DAHfO0iS/view]
